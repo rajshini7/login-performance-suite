@@ -50,7 +50,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="-757832725">&quot;token&quot;</stringProp>
             </collectionProp>
@@ -64,6 +64,7 @@
             <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
             <stringProp name="JSONPostProcessor.jsonPathExprs">$.token</stringProp>
             <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
           </JSONPostProcessor>
           <hashTree/>
         </hashTree>
@@ -89,7 +90,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="3355">id</stringProp>
             </collectionProp>
