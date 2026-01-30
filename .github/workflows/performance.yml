@@ -1,0 +1,49 @@
+name: Performance Test Pipeline (Development)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - development
+
+jobs:
+  performance-tests:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: development
+
+      - name: Setup Java 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '11'
+
+      - name: Install Apache JMeter
+        shell: powershell
+        run: |
+          Invoke-WebRequest `
+            https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.zip `
+            -OutFile jmeter.zip
+          Expand-Archive jmeter.zip -DestinationPath C:\Tools -Force
+
+      - name: Run performance test suite
+        shell: powershell
+        run: |
+          cd $env:GITHUB_WORKSPACE
+          .\run_test.bat
+
+      - name: Upload JTL results
+        uses: actions/upload-artifact@v4
+        with:
+          name: jtl-results
+          path: results
+
+      - name: Upload HTML reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-reports
+          path: reports
